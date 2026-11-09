@@ -367,6 +367,10 @@ const TALENTS_CATALOG = [
   }
 ];
 
+// Ordina i 42 talenti in ordine alfabetico
+TALENTS_CATALOG.sort((a, b) => a.name.localeCompare(b.name, 'it', { sensitivity: 'base' }));
+
+
 // Stato applicativo con supporto sicuro a localStorage
 function getStoredMatrix() {
   try {
@@ -484,6 +488,50 @@ function setSelectedRarity(rarity) {
 }
 
 // Event Listeners
+
+// Gestione ricerca e autoselezione istantanea del talento
+function handleTalentSearchInput(query) {
+  const trimmed = query.trim();
+  populateTalentSelect(trimmed);
+
+  if (!trimmed) {
+    const selectedOpt = form.talentSelect.selectedOptions[0];
+    if (selectedOpt && selectedOpt.value) {
+      setSelectedRarity(selectedOpt.dataset.rarity);
+      updateTalentPreview(selectedOpt.dataset.name, selectedOpt.dataset.category, selectedOpt.dataset.desc, selectedOpt.dataset.modLevel1);
+    } else {
+      updateTalentPreview('', '', 'Seleziona un talento per visualizzarne la descrizione e i benefici di gioco.');
+    }
+    evaluate();
+    return;
+  }
+
+  const q = trimmed.toLowerCase();
+
+  // Trova la migliore corrispondenza:
+  // 1. Nome esatto
+  let matched = TALENTS_CATALOG.find(t => t.name.toLowerCase() === q);
+  // 2. Inizia con la stringa digitata
+  if (!matched) {
+    matched = TALENTS_CATALOG.find(t => t.name.toLowerCase().startsWith(q));
+  }
+  // 3. Contiene la stringa digitata nel nome
+  if (!matched) {
+    matched = TALENTS_CATALOG.find(t => t.name.toLowerCase().includes(q));
+  }
+  // 4. Contiene nella categoria
+  if (!matched) {
+    matched = TALENTS_CATALOG.find(t => t.category.toLowerCase().includes(q));
+  }
+
+  if (matched) {
+    form.talentSelect.value = matched.id;
+    setSelectedRarity(matched.rarity);
+    updateTalentPreview(matched.name, matched.category, matched.desc, matched.modLevel1);
+    evaluate();
+  }
+}
+
 function setupEventListeners() {
   form.annoSelect.addEventListener('change', evaluate);
   
@@ -505,7 +553,13 @@ function setupEventListeners() {
   });
 
   form.talentSearch.addEventListener('input', (e) => {
-    populateTalentSelect(e.target.value);
+    handleTalentSearchInput(e.target.value);
+  });
+
+  form.talentSearch.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+    }
   });
 
   if (dice.rollBtn) {
