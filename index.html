@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#E7E3DA">
+  <title>Verifica Eleggibilità Talenti · Registro Arcane GdR</title>
+  
+  <!-- Fonts da Google Fonts identici a registro.arcanegdr.it -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Azeret+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Barra Superiore di Navigazione -->
+  <header class="topbar">
+    <div class="topbar-content">
+      <a href="https://registro.arcanegdr.it" target="_blank" rel="noopener" class="brand-group" title="Vai al portale del Registro">
+        <div class="sigil-icon">✦</div>
+        <div class="brand-text">
+          <h1>Registro del Mondo Magico</h1>
+          <div class="brand-sub">Arcane GdR · Strumento Selezione Talenti</div>
+        </div>
+      </a>
+      <div class="topbar-actions">
+        <a href="https://registro.arcanegdr.it" target="_blank" rel="noopener" class="live-link">
+          <span class="status-dot"></span>
+          <span>registro.arcanegdr.it</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenitore Principale -->
+  <main class="container">
+    
+    <!-- Hero / Intro -->
+    <section>
+      <h2 class="hero-quote">Selezione & Eleggibilità <em class="pig">Talento</em></h2>
+      <div class="hero-meta">
+        <p class="hero-desc">
+          Valuta in tempo reale la selezione del tuo talento per il Registro di Arcane GdR. Se il talento è <strong>Comune</strong>, <strong>Non Comune</strong> o <strong>Raro</strong> risulta <strong>Richiedibile</strong>; per <strong>Molto Raro</strong> ed <strong>Epico</strong> risulteranno <strong>Azioni Richieste</strong>.
+          La Classe Difficoltà (CD) e le istruzioni operative vengono impostate dinamicamente in base all'Anno scolastico e alla Rarità.
+        </p>
+        <div class="stats-pill-group">
+          <div class="stat-pill"><span class="num">42</span> <span class="lbl">Talenti Catalogo</span></div>
+          <div class="stat-pill"><span class="num">7</span> <span class="lbl">Anni Accademici</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Griglia a due colonne -->
+    <div class="main-grid">
+
+      <!-- COLONNA SINISTRA: Parametri -->
+      <section class="card">
+        <div class="card-header">
+          <h3 class="card-title">Parametri Personaggio</h3>
+          <span class="card-badge">Fase 1 · Configurazione</span>
+        </div>
+
+        <!-- Anno Scolastico -->
+        <div class="form-group">
+          <label class="form-label" for="annoSelect">Anno Scolastico / Status</label>
+          <div class="select-wrap">
+            <select id="annoSelect">
+              <option value="1">1° Anno (I Anno - Principiante)</option>
+              <option value="2">2° Anno (II Anno)</option>
+              <option value="3">3° Anno (III Anno - Scelta Materie Complementari)</option>
+              <option value="4">4° Anno (IV Anno)</option>
+              <option value="5" selected>5° Anno (V Anno - Anno dei G.U.F.O.)</option>
+              <option value="6">6° Anno (VI Anno - Corsi Avanzati)</option>
+              <option value="7">7° Anno (VII Anno - Anno dei M.A.G.O.)</option>
+              <option value="adulto">Adulto / Fuori Corso / Docente / Post-Diploma</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Rarità Talento -->
+        <div class="form-group">
+          <label class="form-label">Rarità del Talento</label>
+          <div class="rarity-pill-group">
+            <div class="rarity-pill">
+              <input type="radio" id="rarRaro" name="rarity" value="raro" checked>
+              <label for="rarRaro">Raro</label>
+            </div>
+            <div class="rarity-pill molto-raro">
+              <input type="radio" id="rarMoltoRaro" name="rarity" value="molto_raro">
+              <label for="rarMoltoRaro">Molto Raro</label>
+            </div>
+            <div class="rarity-pill epico">
+              <input type="radio" id="rarEpico" name="rarity" value="epico">
+              <label for="rarEpico">Epico</label>
+            </div>
+            <div class="rarity-pill leggendario">
+              <input type="radio" id="rarLeggendario" name="rarity" value="leggendario">
+              <label for="rarLeggendario">Leggendario</label>
+            </div>
+            <div class="rarity-pill unico">
+              <input type="radio" id="rarUnico" name="rarity" value="unico">
+              <label for="rarUnico">Unico</label>
+            </div>
+            <div class="rarity-pill narrativo">
+              <input type="radio" id="rarNarrativo" name="rarity" value="narrativo">
+              <label for="rarNarrativo">Narrativo</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Selezione dal Catalogo di Arcane GdR -->
+        <div class="form-group">
+          <label class="form-label" for="talentSelect">Talento dal Catalogo Ufficiale (42 Disponibili)</label>
+          <div class="talent-search-box">
+            <input type="text" id="talentSearch" placeholder="Cerca talento per nome o materia (es. Alchimista, Incantatore, Pozioni)...">
+          </div>
+          <div class="select-wrap">
+            <select id="talentSelect">
+              <!-- Popolato dinamicamente da app.js -->
+            </select>
+          </div>
+
+          <!-- Box Anteprima / Descrizione del Talento -->
+          <div class="talent-preview-box" id="talentDescBox">
+            <div class="talent-preview-name">
+              <span id="talentDescTitle">Dettagli Talento</span>
+              <span class="card-badge" id="talentDescCat"></span>
+            </div>
+            <div id="talentDescText">Seleziona un talento per visualizzarne la descrizione e i benefici di gioco.</div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- COLONNA DESTRA: Verdetto & Istruzioni -->
+      <section class="card">
+        <div class="card-header">
+          <h3 class="card-title">Verdetto del Registro</h3>
+          <span class="card-badge">Fase 2 · Esito & Istruzioni</span>
+        </div>
+
+        <!-- Banner di Eleggibilità Dinamico -->
+        <div class="verdict-banner eligible" id="verdictBanner">
+          <div class="verdict-title-group">
+            <span class="verdict-sub" id="verdictSub">Talento idoneo per la richiesta tramite Ticket Discord</span>
+            <span class="verdict-status" id="verdictStatus">Richiedibile</span>
+          </div>
+          <div class="verdict-badge-pill" id="verdictBadge">RICHIEDIBILE</div>
+        </div>
+
+        <!-- Display Classe Difficoltà (CD) -->
+        <div class="cd-display-row">
+          <div class="cd-box">
+            <div class="cd-box-label">Classe Difficoltà da Affrontare</div>
+            <div class="cd-box-num" id="cdNum">CD 12</div>
+            <div class="cd-box-sub" id="cdFormula">V Anno × Raro</div>
+            <div class="cd-box-sub" id="minYearSub" style="margin-top: 4px; font-size: 11px; opacity: 0.85;">Anno min: 3° Anno</div>
+          </div>
+        </div>
+
+        <!-- Elenco Istruzioni Dinamiche -->
+        <div class="instructions-box">
+          <div class="inst-title">
+            <span>Istruzioni Operative</span>
+            <span class="card-badge">Cosa fare adesso</span>
+          </div>
+          <ul class="inst-list" id="instructionsList">
+            <!-- Popolato dinamicamente da app.js -->
+          </ul>
+        </div>
+
+        <!-- Azioni Rapide con Link a registro.arcanegdr.it -->
+        <div class="action-buttons">
+          <a href="https://registro.arcanegdr.it" target="_blank" rel="noopener" class="btn btn-primary">
+            Apri Registro Arcane ↗
+          </a>
+          <a href="https://discord.gg/EfSccDMzdn" target="_blank" rel="noopener" class="btn btn-secondary">
+            Ticket Supporto Discord ↗
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- SEZIONE INFERIORE: Simulatore Lancio Dadi (1d20 + Modificatore vs CD) -->
+    <section class="dice-card">
+      <div class="card-header">
+        <div>
+          <h3 class="card-title">Simulatore di Prova Talento (Dadi Registro)</h3>
+          <div class="brand-sub">Lancia 1d20 con il sistema automatizzato di Arcane GdR</div>
+        </div>
+        <span class="card-badge">Prova vs CD Attuale</span>
+      </div>
+
+      <p class="hero-desc">
+        Nelle sessioni su Discord o nel Registro di Arcane GdR, per sbloccare o superare una prova di talento si effettua un tiro di d20 a cui si somma il modificatore di abilità, confrontandolo con la CD impostata.
+      </p>
+
+      <div class="dice-controls">
+        <div class="mod-display-group">
+          <label class="form-label">Bonus/Modificatore (Stat / Abilità)</label>
+          <div class="mod-value-box">
+            <span class="mod-total-badge" id="diceModBadge">+5</span>
+            <span class="mod-formula-text" id="diceModBreakdown">Talento Liv. 1 (+2) + Competenza 5° Anno (+3) = +5</span>
+          </div>
+        </div>
+        <button id="rollDiceBtn" class="btn btn-primary">
+          🎲 Effettua Lancio Dado (1d20)
+        </button>
+        <div class="dice-result-badge" id="diceResultBadge">-</div>
+        <div id="diceResultDetail" style="font-size: 13px; color: var(--ink-secondary); flex: 1;">
+          Clicca su "Effettua Lancio Dado" per eseguire la prova automatizzata contro la CD.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer con riferimenti ad Arcane GdR -->
+  <footer>
+    <p>
+      Basato sulle regole e sulle convenzioni del <strong>Registro del Mondo Magico</strong> di <a href="https://registro.arcanegdr.it" target="_blank" rel="noopener">Arcane GdR</a>.
+      Tutti i diritti dei marchi, ambientazione e schede appartengono alle rispettive comunità e autori.
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

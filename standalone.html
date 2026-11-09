@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#E7E3DA">
+  <title>Verifica Eleggibilità Talenti · Registro Arcane GdR</title>
+  
+  <!-- Fonts da Google Fonts identici a registro.arcanegdr.it -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Azeret+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+:root {
+  --bg: #E7E3DA;
+  --bg-card: #F4F1EA;
+  --bg-card-alt: #ECE7DE;
+  --ink: #1C1A17;
+  --ink-secondary: #5C584F;
+  --ink-muted: #847F75;
+  --hair: #D1CAC0;
+  --hair-strong: #B5ACA0;
+  
+  --pig: #A33426;
+  --pig-hover: #86271C;
+  --pig-light: #F7EAE8;
+  
+  --emerald: #1F6B43;
+  --emerald-light: #E7F3EC;
+  --emerald-border: #9BC7AE;
+  
+  --amber: #B8621E;
+  --amber-light: #FBF0E6;
+  --amber-border: #E0BA98;
+  
+  --serif: 'Instrument Serif', Georgia, serif;
+  --mono: 'Azeret Mono', monospace, -apple-system, sans-serif;
+  
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 3px rgba(28, 26, 23, 0.06);
+  --shadow-md: 0 4px 12px rgba(28, 26, 23, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Top bar / Header */
+.topbar {
+  border-bottom: 1px solid var(--hair);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.topbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.sigil-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--hair-strong);
+  display: grid;
+  place-items: center;
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--pig);
+  background: var(--bg-card);
+}
+
+.brand-text h1 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.brand-text .brand-sub {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-secondary);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.live-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius-sm);
+  color: var(--pig);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.live-link:hover {
+  background: var(--pig-light);
+  border-color: var(--pig);
+}
+
+.live-link .status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--emerald);
+  display: inline-block;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Layout container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  flex: 1;
+  width: 100%;
+}
+
+/* Hero Section */
+.hero-quote {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.hero-quote em.pig {
+  font-style: italic;
+  color: var(--pig);
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--hair);
+  margin-bottom: 32px;
+}
+
+.hero-desc {
+  max-width: 64ch;
+  color: var(--ink-secondary);
+  font-size: 13px;
+}
+
+.stats-pill-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.stat-pill {
+  background: var(--bg-card);
+  border: 1px solid var(--hair);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+}
+
+.stat-pill .num {
+  font-weight: 600;
+  color: var(--ink);
+  margin-right: 4px;
+}
+
+.stat-pill .lbl {
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+/* Grid layout */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Panel cards */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--hair);
+}
+
+.card-title {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.card-badge {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+}
+
+/* Form inputs & controls */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-secondary);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.select-wrap, .input-wrap {
+  position: relative;
+}
+
+select, input[type="text"], input[type="number"] {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--hair-strong);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+select:focus, input[type="text"]:focus, input[type="number"]:focus {
+  border-color: var(--pig);
+  box-shadow: 0 0 0 2px var(--pig-light);
+}
+
+/* Radio button pills for Rarity */
+.rarity-pill-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 8px;
+}
+
+.rarity-pill {
+  position: relative;
+}
+
+.rarity-pill input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.rarity-pill label {
+  display: block;
+  text-align: center;
+  padding: 8px 6px;
+  background: var(--bg);
+  border: 1px solid var(--hair-strong);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.rarity-pill input[type="radio"]:checked + label {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+  font-weight: 600;
+}
+
+.rarity-pill.molto-raro input[type="radio"]:checked + label {
+  background: var(--pig);
+  border-color: var(--pig);
+  color: #fff;
+}
+
+.rarity-pill.epico input[type="radio"]:checked + label {
+  background: #622A73;
+  border-color: #622A73;
+  color: #fff;
+}
+
+.rarity-pill.leggendario input[type="radio"]:checked + label {
+  background: #9A6B1F;
+  border-color: #9A6B1F;
+  color: #fff;
+}
+
+.rarity-pill.unico input[type="radio"]:checked + label {
+  background: #1C3D5A;
+  border-color: #1C3D5A;
+  color: #fff;
+}
+
+.rarity-pill.narrativo input[type="radio"]:checked + label {
+  background: #2D5A3C;
+  border-color: #2D5A3C;
+  color: #fff;
+}
+
+/* Preset talent dropdown list */
+.talent-search-box {
+  margin-bottom: 8px;
+}
+
+.talent-preview-box {
+  background: var(--bg);
+  border: 1px dashed var(--hair-strong);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-size: 12px;
+  color: var(--ink-secondary);
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.talent-preview-name {
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+/* EP & Checklist Toggles */
+.checklist-box {
+  background: var(--bg);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+
+.ep-slider-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.ep-val {
+  font-weight: 600;
+  color: var(--pig);
+  font-size: 13px;
+  min-width: 70px;
+  text-align: right;
+}
+
+input[type="range"] {
+  flex: 1;
+  accent-color: var(--pig);
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.checkbox-row input {
+  accent-color: var(--pig);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* RIGHT PANEL: Verdict Card */
+.verdict-banner {
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.verdict-banner::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px dashed currentColor;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.verdict-banner.eligible {
+  background: var(--emerald-light);
+  border: 1px solid var(--emerald-border);
+  color: var(--emerald);
+}
+
+.verdict-banner.actions {
+  background: var(--amber-light);
+  border: 1px solid var(--amber-border);
+  color: var(--amber);
+}
+
+.verdict-title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.verdict-sub {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.verdict-status {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.verdict-badge-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border: 1px solid currentColor;
+}
+
+/* CD Display Box */
+.cd-display-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-bottom: 24px;
+}
+
+.cd-box {
+  background: var(--bg);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-align: center;
+}
+
+.cd-box-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-secondary);
+  margin-bottom: 4px;
+}
+
+.cd-box-num {
+  font-family: var(--serif);
+  font-size: 40px;
+  line-height: 1;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.cd-box-sub {
+  font-size: 11px;
+  color: var(--ink-muted);
+  margin-top: 4px;
+}
+
+/* Instruction lists */
+.instructions-box {
+  border-top: 1px solid var(--hair);
+  padding-top: 20px;
+  margin-bottom: 24px;
+}
+
+.inst-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inst-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inst-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.inst-num {
+  font-size: 10px;
+  font-weight: 600;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--hair-strong);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  background: var(--bg);
+}
+
+.inst-item.done {
+  color: var(--ink-muted);
+  text-decoration: line-through;
+}
+
+/* Code Snippet Box (for copying to Arcane GDR Role post) */
+.snippet-box {
+  background: #1C1A17;
+  color: #EDE7DE;
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  font-size: 12px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.snippet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9D9689;
+}
+
+.snippet-code {
+  font-family: var(--mono);
+  word-break: break-all;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.copy-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.copy-btn:hover {
+  background: var(--pig);
+  border-color: var(--pig);
+}
+
+/* Quick link buttons to Registro */
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--pig);
+  color: #fff;
+  border: 1px solid var(--pig);
+}
+
+.btn-primary:hover {
+  background: var(--pig-hover);
+}
+
+.btn-secondary {
+  background: var(--bg);
+  color: var(--ink);
+  border: 1px solid var(--hair-strong);
+}
+
+.btn-secondary:hover {
+  background: var(--hair);
+}
+
+/* Dice Simulator widget */
+.dice-card {
+  margin-top: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+
+.dice-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.mod-display-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.mod-value-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg);
+  border: 1px solid var(--hair-strong);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+}
+
+.mod-total-badge {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--pig);
+  min-width: 36px;
+  text-align: center;
+  line-height: 1;
+}
+
+.mod-formula-text {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-secondary);
+  line-height: 1.35;
+}
+
+.dice-result-badge {
+  font-size: 20px;
+  font-family: var(--serif);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--hair-strong);
+  background: var(--bg);
+  min-width: 80px;
+  text-align: center;
+}
+
+.dice-result-badge.success {
+  background: var(--emerald-light);
+  border-color: var(--emerald);
+  color: var(--emerald);
+}
+
+.dice-result-badge.fail {
+  background: var(--amber-light);
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+/* Modal / Matrix drawer */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 26, 23, 0.6);
+  backdrop-filter: blur(2px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-body {
+  background: var(--bg-card);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius-md);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  box-shadow: var(--shadow-md);
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 12px;
+}
+
+.matrix-table th, .matrix-table td {
+  border: 1px solid var(--hair);
+  padding: 8px 10px;
+  text-align: center;
+  transition: all 0.15s ease;
+}
+
+.matrix-table td.active-cell {
+  background: var(--pig-light) !important;
+  box-shadow: inset 0 0 0 2px var(--pig);
+}
+
+.matrix-table td.active-cell input {
+  background: #fff !important;
+  color: var(--pig) !important;
+  font-weight: 700 !important;
+  border-color: var(--pig) !important;
+}
+
+.matrix-table th {
+  background: var(--bg-card-alt);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.matrix-table input[type="number"] {
+  width: 65px;
+  padding: 6px 6px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  background: var(--bg);
+  border: 1px solid var(--hair-strong);
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
+}
+
+.matrix-table input[type="number"]:focus {
+  border-color: var(--pig);
+  background: #fff;
+  box-shadow: 0 0 0 2px var(--pig-light);
+}
+
+/* Instruction text block */
+.instructions-text-block {
+  background: var(--bg);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.instructions-text-block p {
+  margin-bottom: 8px;
+}
+
+.instructions-text-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* Quest Protocol for Azioni Richieste */
+.quest-protocol-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.quest-step-card {
+  background: var(--bg);
+  border: 1px solid var(--hair);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  transition: all 0.15s ease;
+}
+
+.quest-step-card:hover {
+  border-color: var(--hair-strong);
+}
+
+.quest-step-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.quest-step-title {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.quest-badge {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  border: 1px solid var(--hair-strong);
+  background: var(--bg-card);
+}
+
+.quest-badge.narrative {
+  color: #2F4D7E;
+  border-color: #B5C5DE;
+  background: #EAF0F9;
+}
+
+.quest-badge.dice {
+  color: var(--pig);
+  border-color: #E2B2AB;
+  background: var(--pig-light);
+}
+
+.quest-badge.ticket {
+  color: var(--emerald);
+  border-color: var(--emerald-border);
+  background: var(--emerald-light);
+}
+
+.quest-step-desc {
+  font-size: 12px;
+  color: var(--ink-secondary);
+  line-height: 1.45;
+}
+
+.recovery-rule-box {
+  background: #FFF8EE;
+  border: 1px solid #EAD4B4;
+  border-left: 4px solid var(--amber);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #694314;
+  line-height: 1.5;
+}
+
+.recovery-rule-box strong {
+  color: #3F2505;
+}
+
+/* 6-roll series results in dice simulator */
+.series-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  align-items: center;
+}
+
+.series-die {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  font-family: var(--serif);
+  font-size: 17px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--hair-strong);
+  background: var(--bg);
+  font-weight: 600;
+}
+
+.series-die.success {
+  background: var(--emerald-light);
+  border-color: var(--emerald);
+  color: var(--emerald);
+}
+
+.series-die.fail {
+  background: var(--amber-light);
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--hair);
+  padding: 24px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-secondary);
+  background: var(--bg);
+  margin-top: 40px;
+}
+
+footer a {
+  color: var(--pig);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+</style>
+</head>
+<body>
+
+  <!-- Barra Superiore di Navigazione -->
+  <header class="topbar">
+    <div class="topbar-content">
+      <a href="https://registro.arcanegdr.it" target="_blank" rel="noopener" class="brand-group" title="Vai al portale del Registro">
+        <div class="sigil-icon">✦</div>
+        <div class="brand-text">
+          <h1>Registro del Mondo Magico</h1>
+          <div class="brand-sub">Arcane GdR · Strumento Selezione Talenti</div>
+        </div>
+      </a>
+      <div class="topbar-actions">
+        <a href="https://registro.arcanegdr.it" target="_blank" rel="noopener" class="live-link">
+          <span class="status-dot"></span>
+          <span>registro.arcanegdr.it</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenitore Principale -->
+  <main class="container">
+    
+    <!-- Hero / Intro -->
+    <section>
+      <h2 class="hero-quote">Selezione & Eleggibilità <em class="pig">Talento</em></h2>
+      <div class="hero-meta">
+        <p class="hero-desc">
+          Valuta in tempo reale la selezione del tuo talento per il Registro di Arcane GdR. Se il talento è <strong>Comune</strong>, <strong>Non Comune</strong> o <strong>Raro</strong> risulta <strong>Richiedibile</strong>; per <strong>Molto Raro</strong> ed <strong>Epico</strong> risulteranno <strong>Azioni Richieste</strong>.
+          La Classe Difficoltà (CD) e le istruzioni operative vengono impostate dinamicamente in base all'Anno scolastico e alla Rarità.
+        </p>
+        <div class="stats-pill-group">
+          <div class="stat-pill"><span class="num">42</span> <span class="lbl">Talenti Catalogo</span></div>
+          <div class="stat-pill"><span class="num">7</span> <span class="lbl">Anni Accademici</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Griglia a due colonne -->
+    <div class="main-grid">
+
+      <!-- COLONNA SINISTRA: Parametri -->
+      <section class="card">
+        <div class="card-header">
+          <h3 class="card-title">Parametri Personaggio</h3>
+          <span class="card-badge">Fase 1 · Configurazione</span>
+        </div>
+
+        <!-- Anno Scolastico -->
+        <div class="form-group">
+          <label class="form-label" for="annoSelect">Anno Scolastico / Status</label>
+          <div class="select-wrap">
+            <select id="annoSelect">
+              <option value="1">1° Anno (I Anno - Principiante)</option>
+              <option value="2">2° Anno (II Anno)</option>
+              <option value="3">3° Anno (III Anno - Scelta Materie Complementari)</option>
+              <option value="4">4° Anno (IV Anno)</option>
+              <option value="5" selected>5° Anno (V Anno - Anno dei G.U.F.O.)</option>
+              <option value="6">6° Anno (VI Anno - Corsi Avanzati)</option>
+              <option value="7">7° Anno (VII Anno - Anno dei M.A.G.O.)</option>
+              <option value="adulto">Adulto / Fuori Corso / Docente / Post-Diploma</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Rarità Talento -->
+        <div class="form-group">
+          <label class="form-label">Rarità del Talento</label>
+          <div class="rarity-pill-group">
+            <div class="rarity-pill">
+              <input type="radio" id="rarRaro" name="rarity" value="raro" checked>
+              <label for="rarRaro">Raro</label>
+            </div>
+            <div class="rarity-pill molto-raro">
+              <input type="radio" id="rarMoltoRaro" name="rarity" value="molto_raro">
+              <label for="rarMoltoRaro">Molto Raro</label>
+            </div>
+            <div class="rarity-pill epico">
+              <input type="radio" id="rarEpico" name="rarity" value="epico">
+              <label for="rarEpico">Epico</label>
+            </div>
+            <div class="rarity-pill leggendario">
+              <input type="radio" id="rarLeggendario" name="rarity" value="leggendario">
+              <label for="rarLeggendario">Leggendario</label>
+            </div>
+            <div class="rarity-pill unico">
+              <input type="radio" id="rarUnico" name="rarity" value="unico">
+              <label for="rarUnico">Unico</label>
+            </div>
+            <div class="rarity-pill narrativo">
+              <input type="radio" id="rarNarrativo" name="rarity" value="narrativo">
+              <label for="rarNarrativo">Narrativo</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Selezione dal Catalogo di Arcane GdR -->
+        <div class="form-group">
+          <label class="form-label" for="talentSelect">Talento dal Catalogo Ufficiale (42 Disponibili)</label>
+          <div class="talent-search-box">
+            <input type="text" id="talentSearch" placeholder="Cerca talento per nome o materia (es. Alchimista, Incantatore, Pozioni)...">
+          </div>
+          <div class="select-wrap">
+            <select id="talentSelect">
+              <!-- Popolato dinamicamente da app.js -->
+            </select>
+          </div>
+
+          <!-- Box Anteprima / Descrizione del Talento -->
+          <div class="talent-preview-box" id="talentDescBox">
+            <div class="talent-preview-name">
+              <span id="talentDescTitle">Dettagli Talento</span>
+              <span class="card-badge" id="talentDescCat"></span>
+            </div>
+            <div id="talentDescText">Seleziona un talento per visualizzarne la descrizione e i benefici di gioco.</div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- COLONNA DESTRA: Verdetto & Istruzioni -->
+      <section class="card">
+        <div class="card-header">
+          <h3 class="card-title">Verdetto del Registro</h3>
+          <span class="card-badge">Fase 2 · Esito & Istruzioni</span>
+        </div>
+
+        <!-- Banner di Eleggibilità Dinamico -->
+        <div class="verdict-banner eligible" id="verdictBanner">
+          <div class="verdict-title-group">
+            <span class="verdict-sub" id="verdictSub">Talento idoneo per la richiesta tramite Ticket Discord</span>
+            <span class="verdict-status" id="verdictStatus">Richiedibile</span>
+          </div>
+          <div class="verdict-badge-pill" id="verdictBadge">RICHIEDIBILE</div>
+        </div>
+
+        <!-- Display Classe Difficoltà (CD) -->
+        <div class="cd-display-row">
+          <div class="cd-box">
+            <div class="cd-box-label">Classe Difficoltà da Affrontare</div>
+            <div class="cd-box-num" id="cdNum">CD 12</div>
+            <div class="cd-box-sub" id="cdFormula">V Anno × Raro</div>
+            <div class="cd-box-sub" id="minYearSub" style="margin-top: 4px; font-size: 11px; opacity: 0.85;">Anno min: 3° Anno</div>
+          </div>
+        </div>
+
+        <!-- Elenco Istruzioni Dinamiche -->
+        <div class="instructions-box">
+          <div class="inst-title">
+            <span>Istruzioni Operative</span>
+            <span class="card-badge">Cosa fare adesso</span>
+          </div>
+          <ul class="inst-list" id="instructionsList">
+            <!-- Popolato dinamicamente da app.js -->
+          </ul>
+        </div>
+
+        <!-- Azioni Rapide con Link a registro.arcanegdr.it -->
+        <div class="action-buttons">
+          <a href="https://registro.arcanegdr.it" target="_blank" rel="noopener" class="btn btn-primary">
+            Apri Registro Arcane ↗
+          </a>
+          <a href="https://discord.gg/EfSccDMzdn" target="_blank" rel="noopener" class="btn btn-secondary">
+            Ticket Supporto Discord ↗
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- SEZIONE INFERIORE: Simulatore Lancio Dadi (1d20 + Modificatore vs CD) -->
+    <section class="dice-card">
+      <div class="card-header">
+        <div>
+          <h3 class="card-title">Simulatore di Prova Talento (Dadi Registro)</h3>
+          <div class="brand-sub">Lancia 1d20 con il sistema automatizzato di Arcane GdR</div>
+        </div>
+        <span class="card-badge">Prova vs CD Attuale</span>
+      </div>
+
+      <p class="hero-desc">
+        Nelle sessioni su Discord o nel Registro di Arcane GdR, per sbloccare o superare una prova di talento si effettua un tiro di d20 a cui si somma il modificatore di abilità, confrontandolo con la CD impostata.
+      </p>
+
+      <div class="dice-controls">
+        <div class="mod-display-group">
+          <label class="form-label">Bonus/Modificatore (Stat / Abilità)</label>
+          <div class="mod-value-box">
+            <span class="mod-total-badge" id="diceModBadge">+5</span>
+            <span class="mod-formula-text" id="diceModBreakdown">Talento Liv. 1 (+2) + Competenza 5° Anno (+3) = +5</span>
+          </div>
+        </div>
+        <button id="rollDiceBtn" class="btn btn-primary">
+          🎲 Effettua Lancio Dado (1d20)
+        </button>
+        <div class="dice-result-badge" id="diceResultBadge">-</div>
+        <div id="diceResultDetail" style="font-size: 13px; color: var(--ink-secondary); flex: 1;">
+          Clicca su "Effettua Lancio Dado" per eseguire la prova automatizzata contro la CD.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer con riferimenti ad Arcane GdR -->
+  <footer>
+    <p>
+      Basato sulle regole e sulle convenzioni del <strong>Registro del Mondo Magico</strong> di <a href="https://registro.arcanegdr.it" target="_blank" rel="noopener">Arcane GdR</a>.
+      Tutti i diritti dei marchi, ambientazione e schede appartengono alle rispettive comunità e autori.
+    </p>
+  </footer>
+
+  <script>
+/**
+ * Arcane GdR - Valutatore Eleggibilità Talenti
+ * Collegato a https://registro.arcanegdr.it
+ */
+
+// 1. Matrice predefinita CD (Anno x Rarità)
+const DEFAULT_CD_MATRIX = {
+  "1": { comune: 10, non_comune: 13, raro: 16, molto_raro: 19, epico: 22, leggendario: 25, unico: 25, narrativo: 12 },
+  "2": { comune: 9,  non_comune: 12, raro: 15, molto_raro: 18, epico: 21, leggendario: 24, unico: 24, narrativo: 11 },
+  "3": { comune: 8,  non_comune: 11, raro: 14, molto_raro: 17, epico: 20, leggendario: 23, unico: 23, narrativo: 10 },
+  "4": { comune: 7,  non_comune: 10, raro: 13, molto_raro: 16, epico: 19, leggendario: 22, unico: 22, narrativo: 9 },
+  "5": { comune: 6,  non_comune: 9,  raro: 12, molto_raro: 15, epico: 18, leggendario: 21, unico: 21, narrativo: 8 },
+  "6": { comune: 5,  non_comune: 8,  raro: 11, molto_raro: 14, epico: 17, leggendario: 20, unico: 20, narrativo: 7 },
+  "7": { comune: 4,  non_comune: 7,  raro: 10, molto_raro: 13, epico: 16, leggendario: 19, unico: 19, narrativo: 6 },
+  "adulto": { comune: 4, non_comune: 6, raro: 9, molto_raro: 12, epico: 15, leggendario: 18, unico: 18, narrativo: 6 }
+};
+
+// Soglia minima raccomandata di anno per rarità (senza autorizzazione speciale)
+const RARITY_MIN_YEARS = {
+  comune: 1,
+  non_comune: 2,
+  raro: 3,
+  molto_raro: 4,
+  epico: 5,
+  leggendario: 6,
+  unico: 5,
+  narrativo: 3
+};
+
+// 2. Catalogo di 42 Talenti (ispirato al Registro di Arcane GdR con Modificatori a Livello 1)
+const TALENTS_CATALOG = [
+  {
+    "id": "cacciatore",
+    "name": "Cacciatore",
+    "rarity": "raro",
+    "category": "Caccia E Inseguimento, Sopravvivenza E Orientamento",
+    "desc": "Riconosce orme semplici, tracce ovvie e segnali di passaggi recenti.",
+    "modLevel1": 1
+  },
+  {
+    "id": "cercatore-di-reliquie-naturali",
+    "name": "Cercatore di reliquie naturali",
+    "rarity": "raro",
+    "category": "Erbologia E Raccolta",
+    "desc": "Il personaggio riconosce e raccoglie materiali comuni senza danneggiarli. Ha un occhio sufficiente per capire cosa può essere utile e cosa no, purché l'ambiente non sia ostile o complesso.",
+    "modLevel1": 1
+  },
+  {
+    "id": "custode-delle-stelle",
+    "name": "Custode delle Stelle",
+    "rarity": "raro",
+    "category": "Divinazione E Astronomia",
+    "desc": "Il personaggio comincia a leggere il cielo come se fosse una mappa vivente. Riconosce le costellazioni principali e i movimenti più evidenti dei pianeti, percependo piccoli segnali di instabilità magica legata ai corpi celesti.",
+    "modLevel1": 1
+  },
+  {
+    "id": "furtivo",
+    "name": "Furtivo",
+    "rarity": "raro",
+    "category": "Furtività",
+    "desc": "Il personaggio riesce a muoversi con un minimo di discrezione. Riduce i rumori più evidenti, ma in ambienti silenziosi o su superfici instabili rischia facilmente di essere scoperto.",
+    "modLevel1": 1
+  },
+  {
+    "id": "istinto-del-viandante",
+    "name": "Istinto del viandante",
+    "rarity": "raro",
+    "category": "Sopravvivenza E Orientamento",
+    "desc": "Il personaggio riconosce sentieri semplici, evita ostacoli evidenti e comprende direzioni basilari. In ambienti difficili rischia facilmente di sbagliare percorso.",
+    "modLevel1": 1
+  },
+  {
+    "id": "manolesta",
+    "name": "Manolesta",
+    "rarity": "raro",
+    "category": "Scasso E Borseggio",
+    "desc": "È rapido e preciso nei piccoli movimenti. Riesce a maneggiare strumenti magici senza farli cadere o danneggiare.",
+    "modLevel1": 1
+  },
+  {
+    "id": "medico-da-battaglia",
+    "name": "Medico da battaglia",
+    "rarity": "raro",
+    "category": "Medimagia",
+    "desc": "Competenza medica rapida sul campo per stabilizzare ferite e traumi fisici o magici durante il combattimento.",
+    "modLevel1": 1
+  },
+  {
+    "id": "osservatore",
+    "name": "Osservatore",
+    "rarity": "raro",
+    "category": "Osservazione",
+    "desc": "Acume visivo superiore per scorgere dettagli nascosti, anomalie nell'ambiente o movimenti repentini.",
+    "modLevel1": 1
+  },
+  {
+    "id": "studente-modello",
+    "name": "Studente Modello",
+    "rarity": "raro",
+    "category": "Conoscenza Teorica, Incantesimi, Studio",
+    "desc": "Per chi vuole scalare le classifiche scolastiche o imparare incantesimi più velocemente degli altri.",
+    "modLevel1": 1
+  },
+  {
+    "id": "vigore-del-duellante",
+    "name": "Vigore del duellante",
+    "rarity": "raro",
+    "category": "Resistenza Fisica",
+    "desc": "Il personaggio dimostra una resistenza appena superiore alla media. Riesce a mantenere un ritmo fisico basilare ma si affatica rapidamente sotto pressione.",
+    "modLevel1": 1
+  },
+  {
+    "id": "chef",
+    "name": "Chef",
+    "rarity": "molto_raro",
+    "category": "Cucina, Medimagia",
+    "desc": "Il mago apprende le basi della cucina magica. Tecnica, attenzione e intuito iniziano a fondersi.",
+    "modLevel1": 1
+  },
+  {
+    "id": "empatia-minore",
+    "name": "Empatia minore",
+    "rarity": "molto_raro",
+    "category": "Empatia",
+    "desc": "Sensibilità emotiva che permette di percepire stati d'animo, tensioni o sincerità negli interlocutori.",
+    "modLevel1": 1
+  },
+  {
+    "id": "empatia-zoofila",
+    "name": "Empatia Zoofila",
+    "rarity": "molto_raro",
+    "category": "Cura Delle Creature Magiche",
+    "desc": "Ideale per chi vuole emulare Newt Scamander, focalizzandosi sull'interazione con il mondo magico naturale. Nota: il fatto che una creatura esiti, si calmi o riconosce il personaggio come affine non annulla istinti naturali, territorialità, fame, addestramento, controllo esterno o ostilità narrativa. Soprattutto ai gradi XXXX–XXXXX non deve diventare immunità automatica agli attacchi.",
+    "modLevel1": 1
+  },
+  {
+    "id": "eredita-di-godric",
+    "name": "Eredità di Godric",
+    "rarity": "molto_raro",
+    "category": "Duello, Forza E Corpo A Corpo",
+    "desc": "La bacchetta non è stata l'unica via all'utilizzo della Magia. Nel ciclo Arturiano tale arte bianca ci viene rappresentata da Re Artù ove tra le sue mani viene impugnata la spada Excalibur. Invece, nelle nostre imprese nell'uso delle spade, è lasciata in eredità dal Fondatore Godric Grifondoro.",
+    "modLevel1": 1
+  },
+  {
+    "id": "incantatore-silente",
+    "name": "Incantatore silente",
+    "rarity": "molto_raro",
+    "category": "Incanti Non Verbali",
+    "desc": "Capacità di eseguire incantesimi senza pronunciare la formula ad alta voce, focalizzando l'intento.",
+    "modLevel1": 1
+  },
+  {
+    "id": "mago-da-guerra",
+    "name": "Mago da Guerra",
+    "rarity": "molto_raro",
+    "category": "Duello, Incantesimi",
+    "desc": "Addestramento al duello e alla gestione di scontri magici ad alta intensità e lanci offensivi.",
+    "modLevel1": 1
+  },
+  {
+    "id": "naso-da-alchimista",
+    "name": "Naso da alchimista",
+    "rarity": "molto_raro",
+    "category": "Pozioni E Alchimia",
+    "desc": "Il personaggio riconosce odori semplici e marcati: ingredienti comuni, piante fresche, solventi base. Una sfumatura sbagliata lo mette in allerta.",
+    "modLevel1": 1
+  },
+  {
+    "id": "presenza-magnetica",
+    "name": "Presenza Magnetica",
+    "rarity": "molto_raro",
+    "category": "Intimidazione, Persuasione, Presenza E Fama",
+    "desc": "Questo talento è per i leader nati, i manipolatori o i diplomatici. Riguarda il peso della propria personalità e la capacità di piegare la volontà altrui con le parole.",
+    "modLevel1": 1
+  },
+  {
+    "id": "trasfiguratore-prodigio",
+    "name": "Trasfiguratore prodigio",
+    "rarity": "molto_raro",
+    "category": "Trasfigurazione",
+    "desc": "Predisposizione superiore alla trasfigurazione di oggetti o forme viventi con controllo millimetrico.",
+    "modLevel1": 1
+  },
+  {
+    "id": "volonta-di-ermes",
+    "name": "Volontà di Ermes",
+    "rarity": "molto_raro",
+    "category": "Agilità E Riflessi",
+    "desc": "Oltre la magia esiste un altro mondo: le potenzialità fisiche vengono spesso messe da parte. Essere atletici o acrobatici permette di muoversi senza che gli ostacoli influiscano, oppure di eludere possibili incantesimi a bersaglio singolo. Benvenuti nel mondo della Destrezza.",
+    "modLevel1": 1
+  },
+  {
+    "id": "affinita-elementale",
+    "name": "Affinità elementale",
+    "rarity": "epico",
+    "category": "Incanti Elementali",
+    "desc": "Sintonia innata con uno o più elementi primordiali (fuoco, acqua, aria, terra) per amplificare gli incanti correlati.",
+    "modLevel1": 1
+  },
+  {
+    "id": "arte-della-bacchetta",
+    "name": "Arte della Bacchetta",
+    "rarity": "epico",
+    "category": "Arte Della Bacchetta, Incantesimi",
+    "desc": "La tradizione rimane salda nell'uso del catalizzatore. I sortilegi sono eseguiti con maestrie e movimenti eleganti. Il flusso magico non attraversa il corpo ma con decisione la bacchetta.",
+    "modLevel1": 1
+  },
+  {
+    "id": "ciarlatano",
+    "name": "Ciarlatano",
+    "rarity": "epico",
+    "category": "Inganno E Falsificazione",
+    "desc": "Il personaggio è un maestro dell'inganno. Non si limita a mentire: vive nelle sue bugie. Identità fasulle, documenti credibili, storie inventate con naturalezza. La sua magia e la sua parlantina si intrecciano fino a rendere quasi impossibile distinguere verità e finzione.",
+    "modLevel1": 1
+  },
+  {
+    "id": "incantatore-atonale",
+    "name": "Incantatore atonale",
+    "rarity": "epico",
+    "category": "Incanti Senza Catalizzatore",
+    "desc": "Il personaggio riesce a generare una debole scintilla magica senza catalizzatore ma solo per incantesimi molto semplici e a distanza ravvicinata. La stabilità è scarsa e l'energia tende a dissiparsi rapidamente.",
+    "modLevel1": 1
+  },
+  {
+    "id": "informatore-del-sottobosco",
+    "name": "Informatore del Sottobosco",
+    "rarity": "epico",
+    "category": "Raccolta Informazioni",
+    "desc": "Questo talento è per il mago che \"conosce qualcuno che conosce qualcuno\". È l'ideale per chi si muove tra Notturn Alley, i pub di Hogsmeade e i corridoi meno illuminati del Ministero.",
+    "modLevel1": 1
+  },
+  {
+    "id": "ira-selvaggia",
+    "name": "Ira selvaggia",
+    "rarity": "epico",
+    "category": "Duello, Incantesimi",
+    "desc": "Quando l'emozione lo travolge, anche un istante, la sua magia vibra come una corda tesa pronta a spezzarsi. Gli incantesimi diventano più grezzi ma colmi di un'intensità innaturale.",
+    "modLevel1": 1
+  },
+  {
+    "id": "mente-fredda",
+    "name": "Mente fredda",
+    "rarity": "epico",
+    "category": "Resistenza Mentale",
+    "desc": "Focalizzato sulla difesa, sulla soppressione dei sentimenti e sulla protezione dei propri ricordi. [consigliato per la specializzazione di Mentalista]",
+    "modLevel1": 1
+  },
+  {
+    "id": "mercante-di-manufatti",
+    "name": "Mercante di Manufatti",
+    "rarity": "epico",
+    "category": "Artefatti E Manufatti, Commercio, Persuasione",
+    "desc": "Per chi ha il bernoccolo degli affari, che si tratti di vendere bacchette, piume di fenice o oggetti di dubbia provenienza.",
+    "modLevel1": 1
+  },
+  {
+    "id": "muro-di-ferro",
+    "name": "Muro di Ferro",
+    "rarity": "epico",
+    "category": "Difesa Magica",
+    "desc": "Padronanza assoluta delle barriere difensive e degli scudi magici contro incantesimi ostili.",
+    "modLevel1": 1
+  },
+  {
+    "id": "puzzle-di-lingua",
+    "name": "Puzzle di Lingua",
+    "rarity": "epico",
+    "category": "Linguistica E Cifre",
+    "desc": "Le parole, conosciute anche come il \"verbo\" sono alla base della nostra magia, alcune di esse sono di facile comprendonio, mentre altre richiedono una minuziosa pratica e affinità. L'arduo allenamento della pronuncia porterà senza dubbio dolci frutti. Lingua disponibile (max 1): lingua delle Maridi, lingua dei Serpenti, lingua dei Goblin, Idioma primitivo dei Troll o Idioma saggio dei Centauri.",
+    "modLevel1": 1
+  },
+  {
+    "id": "traccia-invisibile",
+    "name": "Traccia invisibile",
+    "rarity": "epico",
+    "category": "Furtività",
+    "desc": "Tecniche avanzate di occultamento per non lasciare orme, residui energetici o tracce olfattive.",
+    "modLevel1": 1
+  },
+  {
+    "id": "arti-oscure",
+    "name": "Arti oscure",
+    "rarity": "leggendario",
+    "category": "Maledizioni E Fatture, Maledizioni Senza Perdono",
+    "desc": "Padronanza delle maledizioni, fatture e incantesimi di magia nera ad alto coefficiente distruttivo.",
+    "modLevel1": 1
+  },
+  {
+    "id": "corrotto-dalle-rune",
+    "name": "Corrotto dalle Rune",
+    "rarity": "leggendario",
+    "category": "Antiche Rune",
+    "desc": "Legame profondo e rischioso con il potere delle antiche rune incise e dei sigilli arcani.",
+    "modLevel1": 1
+  },
+  {
+    "id": "il-mago-aurico",
+    "name": "Il Mago Aurico",
+    "rarity": "leggendario",
+    "category": "Fortuna, Incantesimi",
+    "desc": "Condizione: Malattia Aurica. Si rammenta che i relativi punteggi valgono esclusivamente nelle manifestazioni della Malattia Aurica/Implosione Magica! Si ricorda di leggere l'apposito Manuale dedicato. Nota: i d100 non sono assolutamente da sommare tra i vari gradi, ma ogni passo va preso in modo unico e indiscutibile.",
+    "modLevel1": 1
+  },
+  {
+    "id": "maestria-elementale",
+    "name": "Maestria Elementale",
+    "rarity": "leggendario",
+    "category": "Incanti Elementali",
+    "desc": "Controllo totale e devastante delle forze elementali e delle loro combinazioni sul campo.",
+    "modLevel1": 1
+  },
+  {
+    "id": "vista",
+    "name": "Vista",
+    "rarity": "leggendario",
+    "category": "Divinazione E Astronomia",
+    "desc": "Il personaggio possiede una sensibilità rara che gli permette di sbirciare oltre il velo del presente. Non si tratta solo di leggere le foglie di tè, ma di percepire il \"ritmo\" del destino che sta per compiersi.",
+    "modLevel1": 1
+  },
+  {
+    "id": "volonta-indomita",
+    "name": "Volontà indomita",
+    "rarity": "leggendario",
+    "category": "Resistenza Mentale",
+    "desc": "Tempra psichica incrollabile in grado di respingere intrusioni mentali, paura e condizionamenti magici.",
+    "modLevel1": 1
+  },
+  {
+    "id": "parry",
+    "name": "Parry",
+    "rarity": "unico",
+    "category": "Percezione Del Pericolo",
+    "desc": "Il personaggio apprende durante la sua crescita o il suo duro addestramento una sensibilità particolare al pericolo, come se i suoi sensi fossero abituati a recepire l'energie negative.",
+    "modLevel1": 1
+  },
+  {
+    "id": "signore-oscuro",
+    "name": "Signore Oscuro",
+    "rarity": "unico",
+    "category": "Intimidazione, Maledizioni Senza Perdono",
+    "desc": "Il personaggio ha intrapreso lo studio delle arti oscure, lasciando che la magia più cupa si intrecci con la propria volontà. Le sue maledizioni diventano più incisive, la sua presenza più inquietante, e la sua aura un richiamo per poteri che la maggior parte dei maghi teme anche solo di nominare.",
+    "modLevel1": 1
+  },
+  {
+    "id": "spinta-del-vento",
+    "name": "Spinta del Vento",
+    "rarity": "unico",
+    "category": "Volo",
+    "desc": "Il mago o la strega ha imparato a percepire e sfruttare le correnti d'aria magiche durante il volo su scopa, trasformandole in una forza e un vantaggio. Questo talento consente di aumentare velocità, stabilità e precisione nelle manovre, adattando l'utente anche a condizioni difficili e migliorando la performance in accelerazioni, virate e recuperi in aria.",
+    "modLevel1": 1
+  },
+  {
+    "id": "volto-noto",
+    "name": "Volto Noto",
+    "rarity": "unico",
+    "category": "Presenza E Fama",
+    "desc": "Il personaggio non è un semplice mago: è un nome che compare sulla Gazzetta del Profeta e sulle Figurine delle Cioccorane. La sua reputazione lo precede, aprendo porte che per altri restano sigillate.",
+    "modLevel1": 1
+  },
+  {
+    "id": "eleganza-incarnata",
+    "name": "Eleganza Incarnata",
+    "rarity": "narrativo",
+    "category": "Etichetta E Eleganza, Presenza E Fama",
+    "desc": "Il personaggio possiede una grazia innata che si manifesta in ogni gesto. Il suo portamento è impeccabile, i movimenti sono fluidi e armoniosi e persino le azioni più semplici sembrano eseguite con naturale raffinatezza. La sua eleganza non è ostentazione, ma una qualità che lascia un'impressione duratura in chiunque lo osservi.",
+    "modLevel1": 1
+  }
+];
+
+// Stato applicativo con supporto sicuro a localStorage
+function getStoredMatrix() {
+  try {
+    if (typeof localStorage !== 'undefined') {
+      const saved = localStorage.getItem('arcane_cd_matrix');
+      if (saved) return JSON.parse(saved);
+    }
+  } catch (e) {
+    console.warn('Impossibile accedere a localStorage:', e);
+  }
+  return DEFAULT_CD_MATRIX;
+}
+
+let currentMatrix = getStoredMatrix();
+
+// Elementi DOM (assegnati all'inizializzazione)
+let form = {};
+let verdict = {};
+let dice = {};
+let currentTotalMod = 4;
+
+// Inizializzazione
+function init() {
+  form = {
+    annoSelect: document.getElementById('annoSelect'),
+    rarityRadios: document.getElementsByName('rarity'),
+    talentSelect: document.getElementById('talentSelect'),
+    talentSearch: document.getElementById('talentSearch'),
+    talentDescBox: document.getElementById('talentDescBox'),
+    talentDescTitle: document.getElementById('talentDescTitle'),
+    talentDescText: document.getElementById('talentDescText'),
+    talentDescCat: document.getElementById('talentDescCat')
+  };
+
+  verdict = {
+    banner: document.getElementById('verdictBanner'),
+    status: document.getElementById('verdictStatus'),
+    sub: document.getElementById('verdictSub'),
+    badge: document.getElementById('verdictBadge'),
+    cdNum: document.getElementById('cdNum'),
+    cdFormula: document.getElementById('cdFormula'),
+    minYearSub: document.getElementById('minYearSub'),
+    instructionsList: document.getElementById('instructionsList')
+  };
+
+  dice = {
+    modBadge: document.getElementById('diceModBadge'),
+    rollBtn: document.getElementById('rollDiceBtn'),
+    resultBadge: document.getElementById('diceResultBadge'),
+    resultDetail: document.getElementById('diceResultDetail'),
+    breakdown: document.getElementById('diceModBreakdown')
+  };
+
+  populateTalentSelect();
+  setupEventListeners();
+  evaluate();
+}
+
+// Popola dropdown talenti
+function populateTalentSelect(filterText = '') {
+  const currentVal = form.talentSelect.value;
+  form.talentSelect.innerHTML = '<option value="">-- Seleziona un Talento dal Catalogo (42 Disponibili) --</option>';
+  
+  const filtered = TALENTS_CATALOG.filter(t => {
+    if (!filterText) return true;
+    return t.name.toLowerCase().includes(filterText.toLowerCase()) || 
+           t.category.toLowerCase().includes(filterText.toLowerCase());
+  });
+
+  filtered.forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t.id;
+    opt.textContent = `${t.name} [${formatRarity(t.rarity)} · Mod. Liv. 1: +${t.modLevel1 || 1}]`;
+    opt.dataset.rarity = t.rarity;
+    opt.dataset.desc = t.desc;
+    opt.dataset.category = t.category;
+    opt.dataset.name = t.name;
+    opt.dataset.modLevel1 = t.modLevel1 || 1;
+    form.talentSelect.appendChild(opt);
+  });
+
+  if (currentVal) {
+    form.talentSelect.value = currentVal;
+  }
+}
+
+function formatRarity(r) {
+  const map = {
+    comune: 'Comune',
+    non_comune: 'Non Comune',
+    raro: 'Raro',
+    molto_raro: 'Molto Raro',
+    epico: 'Epico',
+    leggendario: 'Leggendario',
+    unico: 'Unico',
+    narrativo: 'Narrativo'
+  };
+  return map[r] || r;
+}
+
+function getSelectedRarity() {
+  for (const radio of form.rarityRadios) {
+    if (radio.checked) return radio.value;
+  }
+  return 'raro';
+}
+
+function setSelectedRarity(rarity) {
+  for (const radio of form.rarityRadios) {
+    if (radio.value === rarity) {
+      radio.checked = true;
+      break;
+    }
+  }
+}
+
+// Event Listeners
+function setupEventListeners() {
+  form.annoSelect.addEventListener('change', evaluate);
+  
+  for (const radio of form.rarityRadios) {
+    radio.addEventListener('change', () => {
+      evaluate();
+    });
+  }
+
+  form.talentSelect.addEventListener('change', () => {
+    const selectedOpt = form.talentSelect.selectedOptions[0];
+    if (selectedOpt && selectedOpt.dataset.rarity) {
+      setSelectedRarity(selectedOpt.dataset.rarity);
+      updateTalentPreview(selectedOpt.dataset.name, selectedOpt.dataset.category, selectedOpt.dataset.desc, selectedOpt.dataset.modLevel1);
+    } else {
+      updateTalentPreview('', '', 'Nessun talento preselezionato.');
+    }
+    evaluate();
+  });
+
+  form.talentSearch.addEventListener('input', (e) => {
+    populateTalentSelect(e.target.value);
+  });
+
+  if (dice.rollBtn) {
+    dice.rollBtn.addEventListener('click', rollDice);
+  }
+}
+
+// Calcolo Bonus Competenza per Anno (Arcane GdR)
+// I Anno: +2 | III Anno: +3 | VI Anno: +4 | Diplomati: +5
+function getCompetenceBonus(year) {
+  if (year === '1' || year === '2') return 2;
+  if (year === '3' || year === '4' || year === '5') return 3;
+  if (year === '6' || year === '7') return 4;
+  if (year === 'adulto') return 5;
+  return 2;
+}
+
+function getSelectedTalentMod() {
+  const selectedOpt = form.talentSelect.selectedOptions[0];
+  if (selectedOpt && selectedOpt.dataset && selectedOpt.dataset.modLevel1) {
+    return parseInt(selectedOpt.dataset.modLevel1, 10) || 1;
+  }
+  return 1;
+}
+
+function updateTalentPreview(title, cat, desc, modLevel1) {
+  if (!title) {
+    form.talentDescTitle.textContent = 'Dettagli Talento';
+    form.talentDescCat.textContent = '';
+    form.talentDescText.textContent = desc || 'Seleziona un talento dal catalogo.';
+    return;
+  }
+  const modTxt = modLevel1 ? ` · Mod. Liv. 1: +${modLevel1}` : '';
+  form.talentDescTitle.textContent = title;
+  form.talentDescCat.textContent = cat ? `[${cat}${modTxt}]` : '';
+  form.talentDescText.textContent = desc;
+}
+
+// LOGICA CORE DI VALUTAZIONE
+function evaluate() {
+  const anno = form.annoSelect.value;
+  const rarity = getSelectedRarity();
+  const annoText = form.annoSelect.options[form.annoSelect.selectedIndex].text;
+  const minRequiredYear = RARITY_MIN_YEARS[rarity] || 1;
+
+  // Calcolo CD dalla matrice in base ad Anno e Rarità
+  const cdValue = (currentMatrix[anno] && currentMatrix[anno][rarity]) 
+                  ? currentMatrix[anno][rarity] 
+                  : 12;
+
+  verdict.cdNum.textContent = `CD ${cdValue}`;
+  verdict.cdFormula.textContent = `${annoText.split(' ')[0]} × ${formatRarity(rarity)}`;
+  if (verdict.minYearSub) {
+    verdict.minYearSub.textContent = `Anno min. raccomandato: ${minRequiredYear}° Anno`;
+  }
+
+  // Calcolo Bonus/Modificatore (Talento Liv. 1 + Competenza Anno)
+  // I Anno: +2 | III Anno: +3 | VI Anno: +4 | Diplomati: +5
+  const talentMod = getSelectedTalentMod();
+  const compBonus = getCompetenceBonus(anno);
+  currentTotalMod = talentMod + compBonus;
+  const annoLabel = anno === 'adulto' ? 'Diplomati' : `${anno}° Anno`;
+
+  if (dice.modBadge) {
+    dice.modBadge.textContent = `+${currentTotalMod}`;
+  }
+  if (dice.breakdown) {
+    dice.breakdown.textContent = `Talento Liv. 1 (+${talentMod}) + Competenza ${annoLabel} (+${compBonus}) = +${currentTotalMod}`;
+  }
+
+  // REGOLA: Comune, Non Comune e Raro sono "Richiedibile". Molto Raro ed Epico sono "Azioni Richieste".
+  const isRichiedibile = (rarity === 'comune' || rarity === 'non_comune' || rarity === 'raro' || rarity === 'narrativo');
+
+  if (isRichiedibile) {
+    verdict.banner.className = 'verdict-banner eligible';
+    verdict.status.textContent = 'Richiedibile';
+    verdict.sub.textContent = 'Talento idoneo per la richiesta tramite Ticket Discord';
+    verdict.badge.textContent = 'RICHIEDIBILE';
+
+    verdict.instructionsList.innerHTML = `
+      <div style="margin-bottom: 12px; font-size: 13px;">
+        Classe Difficoltà di riferimento per ${annoText.split(' ')[0]} × ${formatRarity(rarity)}: <strong style="color:var(--emerald);">CD ${cdValue}</strong>
+      </div>
+      <div class="instructions-text-block">
+        <p>Il talento ha rarità <strong>${formatRarity(rarity)}</strong> ed è contrassegnato come <strong>Richiedibile</strong>.</p>
+        <p>Non richiede capitoli o role preliminari, ma <strong>va richiesto tramite apposito ticket sul server Discord</strong> di Arcane GdR.</p>
+        <p>Apri il ticket nella sezione dedicata del Discord specificando il talento desiderato e il tuo Anno di corso. Se richiesto dallo staff o dal Master, la Classe Difficoltà per l'eventuale tiro è <strong>CD ${cdValue}</strong>.</p>
+      </div>
+    `;
+  } else {
+    verdict.banner.className = 'verdict-banner actions';
+    verdict.status.textContent = 'Azioni Richieste';
+    verdict.sub.textContent = 'Istruzioni obbligatorie prima della selezione';
+    verdict.badge.textContent = 'AZIONI RICHIESTE';
+
+    // Testo esatto specificato per "Azioni Richieste"
+    verdict.instructionsList.innerHTML = `
+      <div style="margin-bottom: 12px; font-size: 13px;">
+        Classe Difficoltà da affrontare: <strong style="color:var(--pig); font-size: 15px;">CD ${cdValue}</strong> (definita per ${annoText.split(' ')[0]} × ${formatRarity(rarity)})
+      </div>
+      <div class="instructions-text-block">
+        <p><strong>Introduzione</strong> - durata minima 60 minuti di pura role narrativa (niente lanci!)</p>
+        <p><strong>Capitolo 1</strong> - 6 tiri di cui 4 devono essere successi. (Da 14 in sù è considerato successo, anche minimo)</p>
+        <p><strong>Capitolo 2</strong> - stessa cosa (durata minima di 60 minuti)</p>
+        <p><strong>Capitolo 3</strong> - stessa cosa (durata minima di 60 minuti)</p>
+        <p><strong>Capitolo 4</strong> - stessa cosa (durata minima di 60 minuti)</p>
+        <p><strong>Epilogo</strong> - durata minima 60 minuti di pura role narrativa (niente lanci!)</p>
+        
+        <p style="margin-top: 14px; padding: 10px 12px; background: rgba(0,0,0,0.03); border-left: 3px solid var(--hair-strong); border-radius: 2px;">
+          Se in uno dei capitoli (anche più volte) ti capita di fare meno di 4 successi, in quel caso farai un paragrafo del suddetto capitolo (se capita al primo, la role sarà 1.1) dove dovrai recuperare i successi SEMPRE facendo 6 tiri. Esempio: al capitolo 2 fai 2 successi, al paragrafo 2.1 avrai 6 lanci a disposizione e dovrai fare almeno 2 successi che si sommeranno a quelli fatti al capitolo 2.
+        </p>
+        
+        <p style="margin-top: 14px; font-weight: 600;">
+          Esportare poi il tutto nel ticket apposito
+        </p>
+      </div>
+    `;
+  }
+}
+
+// Simulatore Lancio Dado (1d20 + Bonus vs CD)
+function rollDice() {
+  const mod = currentTotalMod;
+  const roll = Math.floor(Math.random() * 20) + 1;
+  const total = roll + mod;
+  
+  const cdText = verdict.cdNum.textContent;
+  const cd = parseInt(cdText.replace('CD', '').trim(), 10) || 12;
+
+  dice.resultBadge.textContent = `${total}`;
+  
+  let outcomeText = '';
+  if (roll === 20) {
+    dice.resultBadge.className = 'dice-result-badge success';
+    outcomeText = `Critico Naturale! (20 + ${mod} = ${total}) vs CD ${cd}. Prova superata magnificamente!`;
+  } else if (roll === 1) {
+    dice.resultBadge.className = 'dice-result-badge fail';
+    outcomeText = `Fallimento Critico! (1 naturale + ${mod} = ${total}) vs CD ${cd}. Il talento fallisce con contraccolpo magico.`;
+  } else if (total >= cd) {
+    dice.resultBadge.className = 'dice-result-badge success';
+    outcomeText = `Successo! (${roll} + ${mod} = ${total}) ≥ CD ${cd}. Prova superata!`;
+  } else {
+    dice.resultBadge.className = 'dice-result-badge fail';
+    outcomeText = `Fallimento (${roll} + ${mod} = ${total}) < CD ${cd}. Mancano ${cd - total} punti alla soglia.`;
+  }
+
+  dice.resultDetail.textContent = outcomeText;
+}
+
+// Avvio
+window.addEventListener('DOMContentLoaded', init);
+
+</script>
+</body>
+</html>
