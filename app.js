@@ -35,7 +35,8 @@ const TALENTS_CATALOG = [
     "rarity": "raro",
     "category": "Caccia E Inseguimento, Sopravvivenza E Orientamento",
     "desc": "Riconosce orme semplici, tracce ovvie e segnali di passaggi recenti.",
-    "modLevel1": 1
+    "modLevel1": 1,
+    "hasCompetence": false
   },
   {
     "id": "cercatore-di-reliquie-naturali",
@@ -43,7 +44,8 @@ const TALENTS_CATALOG = [
     "rarity": "raro",
     "category": "Erbologia E Raccolta",
     "desc": "Il personaggio riconosce e raccoglie materiali comuni senza danneggiarli. Ha un occhio sufficiente per capire cosa può essere utile e cosa no, purché l'ambiente non sia ostile o complesso.",
-    "modLevel1": 1
+    "modLevel1": 1,
+    "hasCompetence": false
   },
   {
     "id": "custode-delle-stelle",
@@ -107,7 +109,8 @@ const TALENTS_CATALOG = [
     "rarity": "raro",
     "category": "Resistenza Fisica",
     "desc": "Il personaggio dimostra una resistenza appena superiore alla media. Riesce a mantenere un ritmo fisico basilare ma si affatica rapidamente sotto pressione.",
-    "modLevel1": 1
+    "modLevel1": 1,
+    "hasCompetence": false
   },
   {
     "id": "chef",
@@ -171,7 +174,8 @@ const TALENTS_CATALOG = [
     "rarity": "molto_raro",
     "category": "Intimidazione, Persuasione, Presenza E Fama",
     "desc": "Questo talento è per i leader nati, i manipolatori o i diplomatici. Riguarda il peso della propria personalità e la capacità di piegare la volontà altrui con le parole.",
-    "modLevel1": 1
+    "modLevel1": 1,
+    "hasCompetence": false
   },
   {
     "id": "trasfiguratore-prodigio",
@@ -211,7 +215,8 @@ const TALENTS_CATALOG = [
     "rarity": "epico",
     "category": "Inganno E Falsificazione",
     "desc": "Il personaggio è un maestro dell'inganno. Non si limita a mentire: vive nelle sue bugie. Identità fasulle, documenti credibili, storie inventate con naturalezza. La sua magia e la sua parlantina si intrecciano fino a rendere quasi impossibile distinguere verità e finzione.",
-    "modLevel1": 1
+    "modLevel1": 1,
+    "hasCompetence": false
   },
   {
     "id": "incantatore-atonale",
@@ -235,7 +240,8 @@ const TALENTS_CATALOG = [
     "rarity": "epico",
     "category": "Duello, Incantesimi",
     "desc": "Quando l'emozione lo travolge, anche un istante, la sua magia vibra come una corda tesa pronta a spezzarsi. Gli incantesimi diventano più grezzi ma colmi di un'intensità innaturale.",
-    "modLevel1": 1
+    "modLevel1": 1,
+    "hasCompetence": false
   },
   {
     "id": "mente-fredda",
@@ -323,7 +329,8 @@ const TALENTS_CATALOG = [
     "rarity": "leggendario",
     "category": "Resistenza Mentale",
     "desc": "Tempra psichica incrollabile in grado di respingere intrusioni mentali, paura e condizionamenti magici.",
-    "modLevel1": 1
+    "modLevel1": 1,
+    "hasCompetence": false
   },
   {
     "id": "parry",
@@ -355,7 +362,8 @@ const TALENTS_CATALOG = [
     "rarity": "unico",
     "category": "Presenza E Fama",
     "desc": "Il personaggio non è un semplice mago: è un nome che compare sulla Gazzetta del Profeta e sulle Figurine delle Cioccorane. La sua reputazione lo precede, aprendo porte che per altri restano sigillate.",
-    "modLevel1": 1
+    "modLevel1": 1,
+    "hasCompetence": false
   },
   {
     "id": "eleganza-incarnata",
@@ -363,7 +371,8 @@ const TALENTS_CATALOG = [
     "rarity": "narrativo",
     "category": "Etichetta E Eleganza, Presenza E Fama",
     "desc": "Il personaggio possiede una grazia innata che si manifesta in ogni gesto. Il suo portamento è impeccabile, i movimenti sono fluidi e armoniosi e persino le azioni più semplici sembrano eseguite con naturale raffinatezza. La sua eleganza non è ostentazione, ma una qualità che lascia un'impressione duratura in chiunque lo osservi.",
-    "modLevel1": 1
+    "modLevel1": 1,
+    "hasCompetence": false
   }
 ];
 
@@ -442,17 +451,19 @@ function populateTalentSelect(filterText = '') {
 
   filtered.forEach(t => {
     const opt = document.createElement('option');
+    const usesComp = t.hasCompetence !== false;
     opt.value = t.id;
-    opt.textContent = `${t.name} [${formatRarity(t.rarity)} · Mod. Liv. 1: +${t.modLevel1 || 1}]`;
+    opt.textContent = `${t.name} [${formatRarity(t.rarity)} · Mod. Liv. 1: +${t.modLevel1 || 1}${usesComp ? '' : ' · No Comp.'}]`;
     opt.dataset.rarity = t.rarity;
     opt.dataset.desc = t.desc;
     opt.dataset.category = t.category;
     opt.dataset.name = t.name;
     opt.dataset.modLevel1 = t.modLevel1 || 1;
+    opt.dataset.hasCompetence = usesComp ? 'true' : 'false';
     form.talentSelect.appendChild(opt);
   });
 
-  if (currentVal) {
+  if (currentVal && filtered.some(t => t.id === currentVal)) {
     form.talentSelect.value = currentVal;
   }
 }
@@ -490,19 +501,29 @@ function setSelectedRarity(rarity) {
 // Event Listeners
 
 // Gestione ricerca e autoselezione istantanea del talento
+function syncSelectedTalentUI() {
+  const selectedOpt = form.talentSelect.selectedOptions[0];
+  if (selectedOpt && selectedOpt.dataset && selectedOpt.dataset.rarity) {
+    setSelectedRarity(selectedOpt.dataset.rarity);
+    updateTalentPreview(
+      selectedOpt.dataset.name,
+      selectedOpt.dataset.category,
+      selectedOpt.dataset.desc,
+      selectedOpt.dataset.modLevel1,
+      selectedOpt.dataset.hasCompetence !== 'false'
+    );
+  } else {
+    updateTalentPreview('', '', 'Seleziona un talento per visualizzarne la descrizione e i benefici di gioco.');
+  }
+  evaluate();
+}
+
 function handleTalentSearchInput(query) {
   const trimmed = query.trim();
   populateTalentSelect(trimmed);
 
   if (!trimmed) {
-    const selectedOpt = form.talentSelect.selectedOptions[0];
-    if (selectedOpt && selectedOpt.value) {
-      setSelectedRarity(selectedOpt.dataset.rarity);
-      updateTalentPreview(selectedOpt.dataset.name, selectedOpt.dataset.category, selectedOpt.dataset.desc, selectedOpt.dataset.modLevel1);
-    } else {
-      updateTalentPreview('', '', 'Seleziona un talento per visualizzarne la descrizione e i benefici di gioco.');
-    }
-    evaluate();
+    syncSelectedTalentUI();
     return;
   }
 
@@ -526,9 +547,7 @@ function handleTalentSearchInput(query) {
 
   if (matched) {
     form.talentSelect.value = matched.id;
-    setSelectedRarity(matched.rarity);
-    updateTalentPreview(matched.name, matched.category, matched.desc, matched.modLevel1);
-    evaluate();
+    syncSelectedTalentUI();
   }
 }
 
@@ -541,16 +560,7 @@ function setupEventListeners() {
     });
   }
 
-  form.talentSelect.addEventListener('change', () => {
-    const selectedOpt = form.talentSelect.selectedOptions[0];
-    if (selectedOpt && selectedOpt.dataset.rarity) {
-      setSelectedRarity(selectedOpt.dataset.rarity);
-      updateTalentPreview(selectedOpt.dataset.name, selectedOpt.dataset.category, selectedOpt.dataset.desc, selectedOpt.dataset.modLevel1);
-    } else {
-      updateTalentPreview('', '', 'Nessun talento preselezionato.');
-    }
-    evaluate();
-  });
+  form.talentSelect.addEventListener('change', syncSelectedTalentUI);
 
   form.talentSearch.addEventListener('input', (e) => {
     handleTalentSearchInput(e.target.value);
@@ -585,7 +595,15 @@ function getSelectedTalentMod() {
   return 1;
 }
 
-function updateTalentPreview(title, cat, desc, modLevel1) {
+function talentAppliesCompetence() {
+  const selectedOpt = form.talentSelect.selectedOptions[0];
+  if (selectedOpt && selectedOpt.dataset && selectedOpt.dataset.hasCompetence === 'false') {
+    return false;
+  }
+  return true;
+}
+
+function updateTalentPreview(title, cat, desc, modLevel1, hasComp = true) {
   if (!title) {
     form.talentDescTitle.textContent = 'Dettagli Talento';
     form.talentDescCat.textContent = '';
@@ -593,8 +611,9 @@ function updateTalentPreview(title, cat, desc, modLevel1) {
     return;
   }
   const modTxt = modLevel1 ? ` · Mod. Liv. 1: +${modLevel1}` : '';
+  const compTxt = hasComp ? '' : ' · Senza Competenza';
   form.talentDescTitle.textContent = title;
-  form.talentDescCat.textContent = cat ? `[${cat}${modTxt}]` : '';
+  form.talentDescCat.textContent = cat ? `[${cat}${modTxt}${compTxt}]` : '';
   form.talentDescText.textContent = desc;
 }
 
@@ -616,10 +635,11 @@ function evaluate() {
     verdict.minYearSub.textContent = `Anno min. raccomandato: ${minRequiredYear}° Anno`;
   }
 
-  // Calcolo Bonus/Modificatore (Talento Liv. 1 + Competenza Anno)
+  // Calcolo Bonus/Modificatore (Talento Liv. 1 + eventuale Competenza Anno)
   // I Anno: +2 | III Anno: +3 | VI Anno: +4 | Diplomati: +5
   const talentMod = getSelectedTalentMod();
-  const compBonus = getCompetenceBonus(anno);
+  const usesComp = talentAppliesCompetence();
+  const compBonus = usesComp ? getCompetenceBonus(anno) : 0;
   currentTotalMod = talentMod + compBonus;
   const annoLabel = anno === 'adulto' ? 'Diplomati' : `${anno}° Anno`;
 
@@ -627,7 +647,9 @@ function evaluate() {
     dice.modBadge.textContent = `+${currentTotalMod}`;
   }
   if (dice.breakdown) {
-    dice.breakdown.textContent = `Talento Liv. 1 (+${talentMod}) + Competenza ${annoLabel} (+${compBonus}) = +${currentTotalMod}`;
+    dice.breakdown.textContent = usesComp
+      ? `Talento Liv. 1 (+${talentMod}) + Competenza ${annoLabel} (+${compBonus}) = +${currentTotalMod}`
+      : `Talento Liv. 1 (+${talentMod}) + Competenza non applicata (+0) = +${currentTotalMod}`;
   }
 
   // REGOLA: Comune, Non Comune e Raro sono "Richiedibile". Molto Raro ed Epico sono "Azioni Richieste".

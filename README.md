@@ -24,11 +24,12 @@ Strumento interattivo e simulatore ufficiale per il calcolo della **Classe Diffi
 4. **Simulatore Dado Registro (1d20 + Modificatore)**:
    - Calcolo automatico e non modificabile del bonus:  
      $$\text{Talento Liv. 1 } (+1) + \text{Competenza dell'Anno} = \text{Bonus Totale}$$
-   - Bonus Competenza per Anno:
+   - Bonus Competenza per Anno *(escluso per i talenti senza competenza al lancio)*:
      - I – II Anno: `+2`
      - III – V Anno: `+3`
      - VI – VII Anno: `+4`
      - Diplomati / Adulto: `+5`
+   - **Talenti senza modificatore di competenza applicato al lancio (`+0`)**: *Cacciatore*, *Cercatore di reliquie naturali*, *Ciarlatano*, *Eleganza Incarnata*, *Ira selvaggia*, *Presenza Magnetica*, *Vigore del duellante*, *Volontà indomita* e *Volto Noto*.
    - Gestione tiri con evidenziazione di Successi, Fallimenti, Critici Naturali (20) e Fallimenti Critici (1).
 
 ---
